@@ -4,7 +4,7 @@ import { geistMono, geistSans } from "@/fonts/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Strive | Login",
+  title: "Strive | Sign up",
   description: "Gym Leaderboard",
 };
 

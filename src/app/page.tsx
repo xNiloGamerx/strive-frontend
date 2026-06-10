@@ -5,7 +5,8 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import SimpleDropdown from "@/components/simpleDropdown";
 import Link from "next/link";
-import { ChangeEvent, useEffect, useState } from "react";
+import Image from "next/image";
+import { type ChangeEvent, useEffect, useState } from "react";
 
 export default function Home() {
   const [username, setUsername] = useState<string>("");
@@ -41,11 +42,15 @@ export default function Home() {
 
       <div className="flex items-center justify-center grow">
         <div className="flex flex-col gap-1 min-w-2/7">
-          <div className="flex gap-2">
-            <span className="flex justify-center flex-1 bg-white text-black px-6 py-1.5 rounded-lg shadow-md">
-              Registrieren
+          <div className="flex gap-2 pl-3">
+            <span className="flex justify-center bg-white text-black px-12 py-1.5 rounded-lg shadow-md">
+              <Image
+                src="/logo.svg"
+                alt="strave logo"
+                width={100}
+                height={25}
+              />
             </span>
-            <span className="flex justify-center flex-1 text-black px-6 py-1.5 rounded-lg"></span>
           </div>
           <div className="flex flex-col justify-center bg-white grow rounded-xl shadow-md p-8">
             <div className="flex flex-col items-center justify-center">
