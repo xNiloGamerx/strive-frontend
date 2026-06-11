@@ -17,7 +17,7 @@ export default function Overview() {
   }, []);
 
   return (
-    <div>
+    <div className="text-black dark:text-gray-100">
       <p>Overview</p>
       <p>{userId}</p>
     </div>

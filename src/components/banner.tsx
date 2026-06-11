@@ -22,7 +22,7 @@ export default function Banner({
   return (
     <div className="absolute bottom-2 left-2 p-4 pr-6">
       <div
-        className={`flex flex-col gap-4 bg-white p-4 rounded-lg max-w-120 shadow-md ${hidden ? "hidden" : ""}`}
+        className={`flex flex-col gap-4 bg-white dark:bg-black text-black dark:text-white p-4 rounded-lg max-w-120 shadow-md ${hidden ? "hidden" : ""}`}
       >
         <div>
           <h2 className="font-bold text-lg">{title}</h2>

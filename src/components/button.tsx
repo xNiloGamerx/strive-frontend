@@ -20,9 +20,9 @@ export default function Button({
 }: ButtonProps) {
   const styles = {
     primary:
-      "bg-black text-white hover:opacity-85 active:opacity-90 cursor-pointer",
+      "bg-black text-white hover:opacity-85 active:opacity-90 cursor-pointer dark:bg-white dark:text-black",
     secondary: "border hover:opacity-85 active:opacity-90 cursor-pointer",
-    disabled: "bg-black text-white opacity-50",
+    disabled: "bg-black text-white opacity-50 dark:bg-white dark:text-black",
   };
 
   return (

@@ -17,7 +17,7 @@ export default function History() {
   }, []);
 
   return (
-    <div>
+    <div className="text-black dark:text-gray-100">
       <p>History</p>
       <p>{userId}</p>
     </div>

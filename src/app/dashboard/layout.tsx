@@ -25,7 +25,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }, []);
 
   return (
-    <div className="flex grow p-4 bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex grow p-4 bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
       <Sidebar username={username ? username : ""} />
       <main className="pl-4">{children}</main>
     </div>

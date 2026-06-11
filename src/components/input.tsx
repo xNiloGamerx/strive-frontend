@@ -27,7 +27,7 @@ export default function Input({
       </p>
       <input
         ref={ref}
-        className="p-2 w-full border border-gray-200 rounded-md text-base focus:outline-1 focus:outline-gray-400"
+        className="p-2 w-full border border-gray-200 dark:border-gray-500 rounded-md text-base focus:outline-1 focus:outline-gray-400"
         type="text"
         placeholder={placeholder}
         onChange={onChange}

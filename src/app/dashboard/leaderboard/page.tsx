@@ -17,7 +17,7 @@ export default function Leaderboard() {
   }, []);
 
   return (
-    <div>
+    <div className="text-black dark:text-gray-100">
       <p>Leaderboard</p>
       <p>{userId}</p>
     </div>

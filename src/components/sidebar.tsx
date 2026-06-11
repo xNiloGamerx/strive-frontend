@@ -70,10 +70,10 @@ export default function Sidebar({ username }: SidebarProps) {
 
   return (
     <div
-      className={`flex flex-col gap-3 ${collapsed ? "w-14" : `w-80`} h-full p-2 bg-white rounded-md shadow-md transition-[width] duration-300`}
+      className={`flex flex-col gap-3 ${collapsed ? "w-14" : `w-80`} h-full p-2 bg-white dark:bg-black rounded-md shadow-md transition-[width] duration-300`}
     >
       <button
-        className={`flex items-center pt-2 cursor-pointer ${collapsed ? "justify-center" : "justify-start"}`}
+        className={`flex items-center pt-1 text-black dark:text-white cursor-pointer ${collapsed ? "justify-center" : "justify-start"}`}
         type="button"
         onClick={() => setCollapsed(!collapsed)}
       >
@@ -92,7 +92,15 @@ export default function Sidebar({ username }: SidebarProps) {
             alt="strave logo"
             width={28}
             height={8}
-            className={collapsed ? "w-8 h-8" : "w-28 h-8"}
+            className={`${collapsed ? "w-8 h-8" : "w-28 h-8"} block dark:hidden`}
+            loading="eager"
+          />
+          <Image
+            src={collapsed ? "/favicon.ico" : "/logo_white.svg"}
+            alt="strave logo"
+            width={28}
+            height={8}
+            className={`${collapsed ? "w-8 h-8" : "w-28 h-8"} hidden dark:block`}
             loading="eager"
           />
         </Link>
@@ -103,13 +111,13 @@ export default function Sidebar({ username }: SidebarProps) {
             key !== "profile" && (
               <Link key={value.route} href={value.route}>
                 <div
-                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer transition-[background-color] duration-300 ${pathname === value.route ? "bg-black text-gray-100" : "hover:bg-gray-100"} ${collapsed && "justify-center"}`}
+                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer transition-[background-color] duration-300 ${pathname === value.route ? "bg-black dark:bg-gray-100 text-gray-100 dark:text-black" : "text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-900"} ${collapsed && "justify-center"}`}
                 >
                   <div
                     className={
                       pathname === value.route
-                        ? "text-gray-100"
-                        : "text-[#6B6B6B]"
+                        ? "text-gray-100 dark:text-black"
+                        : "text-[#6B6B6B] dark:text-gray-600"
                     }
                   >
                     {value.icon}
@@ -119,33 +127,15 @@ export default function Sidebar({ username }: SidebarProps) {
               </Link>
             ),
         )}
-        {/* <Link href="/dashboard/overview">
-          <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
-            <HouseIcon className="w-5 h-5 text-[#6B6B6B]" />
-            <p className="">Overview</p>
-          </div>
-        </Link>
-        <Link href="/dashboard/leaderboard">
-          <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
-            <TrophyIcon className="w-5 h-5 text-[#6B6B6B]" />
-            <p className="">Leaderboard</p>
-          </div>
-        </Link>
-        <Link href="/dashboard/history">
-          <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
-            <HistoryIcon className="w-5 h-5 text-[#6B6B6B]" />
-            <p className="">History</p>
-          </div>
-        </Link> */}
         <Link className="mt-auto" href={routes.profile.route}>
-          <div className="flex items-center gap-2 p-2 rounded-md transition-[background-color] duration-300 hover:bg-gray-100 cursor-pointer">
+          <div className="flex items-center gap-2 p-2 rounded-md transition-[background-color] duration-300 hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer">
             <div
-              className={`rounded-md ${!collapsed && "p-2.5 border border-[#6B6B6B]"}`}
+              className={`text-[#6B6B6B] rounded-md ${!collapsed && "p-2.5 border border-[#6B6B6B]"}`}
             >
               {routes.profile.icon}
             </div>
             <div className={`flex flex-col ${collapsed && "hidden"}`}>
-              <p className="m-0">{username}</p>
+              <p className="m-0 text-black dark:text-white">{username}</p>
               <p className="text-[#6B6B6B] text-sm">test@gmail.com</p>
             </div>
           </div>

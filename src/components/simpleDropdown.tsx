@@ -59,7 +59,7 @@ export default function SimpleDropdown({
       </p>
       <button
         ref={btnRef}
-        className="flex items-center justify-between p-2 w-full border border-gray-200 rounded-md text-base focus:outline-1 focus:outline-gray-400 cursor-pointer"
+        className="flex items-center justify-between p-2 w-full border border-gray-200 dark:border-gray-500 rounded-md text-base focus:outline-1 focus:outline-gray-400 cursor-pointer"
         onClick={() => setOpen(!open)}
         type="button"
       >
@@ -70,13 +70,13 @@ export default function SimpleDropdown({
       </button>
       <div
         ref={dropdownRef}
-        className={`${open ? "" : "hidden"} absolute flex flex-col w-full mt-1 bg-white shadow-md rounded-sm max-h-40 overflow-y-scroll z-999`}
+        className={`${open ? "" : "hidden"} absolute flex flex-col w-full mt-1 bg-white dark:bg-black text-black dark:text-white shadow-md rounded-sm max-h-40 overflow-y-scroll z-999`}
       >
         {items.map((text) => (
           <button
             type="button"
             key={text}
-            className="flex p-2 hover:bg-gray-100 cursor-pointer"
+            className="flex p-2 hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer"
             onClick={() => {
               setSelected(text);
               setOpen(false);

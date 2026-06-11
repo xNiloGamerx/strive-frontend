@@ -6,7 +6,7 @@ import Input from "@/components/input";
 import SimpleDropdown from "@/components/simpleDropdown";
 import Link from "next/link";
 import Image from "next/image";
-import { type ChangeEvent, useEffect, useRef, useState } from "react";
+import { type ChangeEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 
 type Message = {
@@ -108,23 +108,30 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col grow justify-between bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col grow justify-between bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
       <div className="w-full h-10"></div>
 
       <div className="flex items-center justify-center grow">
         <div className="flex flex-col gap-1 min-w-2/7">
           <div className="flex gap-2 pl-3">
-            <span className="flex justify-center bg-white text-black px-12 py-1.5 rounded-lg shadow-md">
+            <span className="flex justify-center bg-white dark:bg-black px-12 py-1.5 rounded-lg shadow-md">
               <Image
                 src="/logo.svg"
                 alt="strave logo"
                 width={28}
                 height={8}
-                className="w-28 h-8"
+                className="w-28 h-8 block dark:hidden"
+              />
+              <Image
+                src="/logo_white.svg"
+                alt="strave logo"
+                width={28}
+                height={8}
+                className="w-28 h-8 hidden dark:block"
               />
             </span>
           </div>
-          <div className="flex flex-col justify-center bg-white grow rounded-xl shadow-md p-8">
+          <div className="flex flex-col justify-center bg-white dark:bg-black text-black dark:text-white grow rounded-xl shadow-md p-8">
             <div className="flex flex-col items-center justify-center">
               <h2 className="text-2xl font-bold">Hallo 👋</h2>
               <p className="text-gray-400">Registriere dich um zu starten!</p>
