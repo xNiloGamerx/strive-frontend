@@ -1,20 +1,32 @@
 "use client";
 
-import { ChevronDown, Currency } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import {
+  ChevronDown,
+  CircleAlertIcon,
+  InfoIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
+import { type RefObject, useEffect, useRef, useState } from "react";
+import Message from "./message";
 
 interface SimpleDropdownProps {
   label?: string;
   placeholder?: string;
   items: string[];
+  required?: boolean;
   onChange: (value: string) => void;
+  messageLevel?: "info" | "warning" | "error";
+  messageText?: string;
 }
 
 export default function SimpleDropdown({
   label,
   placeholder,
   items,
+  required,
   onChange,
+  messageLevel,
+  messageText,
 }: SimpleDropdownProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("");
@@ -42,7 +54,9 @@ export default function SimpleDropdown({
 
   return (
     <div className="relative">
-      <p className="font-semibold">{label}</p>
+      <p className="font-semibold">
+        {label} {required ? <span className="text-red-500">*</span> : <></>}
+      </p>
       <button
         ref={btnRef}
         className="flex items-center justify-between p-2 w-full border border-gray-200 rounded-md text-base focus:outline-1 focus:outline-gray-400 cursor-pointer"
@@ -73,6 +87,7 @@ export default function SimpleDropdown({
           </button>
         ))}
       </div>
+      <Message messageLevel={messageLevel} messageText={messageText} />
     </div>
   );
 }

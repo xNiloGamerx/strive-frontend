@@ -1,8 +1,12 @@
 import type { ButtonHTMLAttributes } from "react";
+import { InfoIcon, TriangleAlertIcon, CircleAlertIcon } from "lucide-react";
+import Message from "./message";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   variant: "primary" | "secondary" | "disabled";
+  messageLevel?: "info" | "warning" | "error";
+  messageText?: string;
 }
 
 export default function Button({
@@ -11,6 +15,8 @@ export default function Button({
   variant,
   className,
   onClick,
+  messageLevel,
+  messageText,
 }: ButtonProps) {
   const styles = {
     primary:
@@ -28,6 +34,7 @@ export default function Button({
       >
         {text}
       </button>
+      <Message messageLevel={messageLevel} messageText={messageText} />
     </div>
   );
 }

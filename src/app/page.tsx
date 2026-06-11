@@ -6,16 +6,39 @@ import Input from "@/components/input";
 import SimpleDropdown from "@/components/simpleDropdown";
 import Link from "next/link";
 import Image from "next/image";
-import { type ChangeEvent, useEffect, useState } from "react";
+import { type ChangeEvent, useEffect, useRef, useState } from "react";
+
+type Message = {
+  messageLevel: "info" | "warning" | "error";
+  messageText: string;
+};
 
 export default function Home() {
   const [username, setUsername] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [weightClass, setWeightClass] = useState<string>("");
 
+  const [usernameMessage, setUsernameMessage] = useState<null | Message>(null);
+  const [genderMessage, setGenderMessage] = useState<null | Message>(null);
+  const [weightClassMessage, setWeightClassMessage] = useState<null | Message>(
+    null,
+  );
+
   const [acceptedLocalStorage, setAcceptedLocalStorage] =
     useState<boolean>(false);
   const [openStorageBanner, setOpenStorageBanner] = useState<boolean>(false);
+
+  const fields = {
+    username: {
+      required: true,
+    },
+    gender: {
+      required: true,
+    },
+    weightClass: {
+      required: true,
+    },
+  };
 
   useEffect(() => {
     setAcceptedLocalStorage(
@@ -33,7 +56,39 @@ export default function Home() {
       setAcceptedLocalStorage(false);
       return;
     }
-    console.log(username, gender, weightClass);
+
+    let valid = false;
+    if (fields.username.required && username.trim() === "") {
+      setUsernameMessage({
+        messageLevel: "error",
+        messageText: "Benutzername ist ein Pflichtfeld",
+      });
+      valid = false;
+    } else {
+      setUsernameMessage(null);
+    }
+
+    if (fields.gender.required && gender.trim() === "") {
+      setGenderMessage({
+        messageLevel: "error",
+        messageText: "Geschlecht ist ein Pflichtfeld",
+      });
+      valid = false;
+    } else {
+      setGenderMessage(null);
+    }
+
+    if (fields.weightClass.required && weightClass.trim() === "") {
+      setWeightClassMessage({
+        messageLevel: "error",
+        messageText: "Gewichtsklasse ist ein Pflichtfeld",
+      });
+      valid = false;
+    } else {
+      setWeightClassMessage(null);
+    }
+
+    if (!valid) return;
   };
 
   return (
@@ -47,8 +102,9 @@ export default function Home() {
               <Image
                 src="/logo.svg"
                 alt="strave logo"
-                width={100}
-                height={25}
+                width={28}
+                height={8}
+                className="w-28 h-8"
               />
             </span>
           </div>
@@ -57,17 +113,23 @@ export default function Home() {
               <h2 className="text-2xl font-bold">Hallo 👋</h2>
               <p className="text-gray-400">Registriere dich um zu starten!</p>
             </div>
-            <div className="flex flex-col gap-4 py-4">
+            <div className="flex flex-col gap-4 pt-4">
               <Input
                 label="Name"
                 placeholder="Gebe einen Benutzernamen an"
                 onChange={handleUsernameChange}
+                required={fields.username.required}
+                messageLevel={usernameMessage?.messageLevel}
+                messageText={usernameMessage?.messageText}
               />
               <SimpleDropdown
                 label="Geschlecht"
                 placeholder="Bitte wähle dein Geschlecht"
                 items={["Mann", "Frau", "Divers"]}
                 onChange={setGender}
+                required={fields.gender.required}
+                messageLevel={genderMessage?.messageLevel}
+                messageText={genderMessage?.messageText}
               />
               <SimpleDropdown
                 label="Gewichtsklasse"
@@ -82,12 +144,21 @@ export default function Home() {
                   "130kg",
                 ]}
                 onChange={setWeightClass}
+                required={fields.weightClass.required}
+                messageLevel={weightClassMessage?.messageLevel}
+                messageText={weightClassMessage?.messageText}
               />
               <Button
                 text="Los gehts!"
                 type="button"
                 variant={acceptedLocalStorage ? "primary" : "disabled"}
                 onClick={handleSubmitRegister}
+                messageLevel="info"
+                messageText={
+                  !acceptedLocalStorage
+                    ? "Bitte akzeptiere erst die Speicherung im Lokalen Speicher"
+                    : ""
+                }
               />
             </div>
           </div>
