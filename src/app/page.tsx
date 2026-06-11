@@ -188,12 +188,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 h-10 text-gray-400">
-        <Link href={"/impressum"}>Impressum</Link>
-        <span>|</span>
-        <Link href={"/datenschutz"}>Datenschutz</Link>
-      </div>
-
       <Banner
         title={"Lokaler Speicher"}
         description={

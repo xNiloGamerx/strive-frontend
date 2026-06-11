@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { geistMono, geistSans } from "@/fonts/fonts";
 
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Strive | Sign up",
@@ -18,7 +19,14 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="h-full flex flex-col">{children}</body>
+      <body className="h-full flex flex-col">
+        {children}
+        <div className="absolute bottom-0 left-[calc(50%-110px)] flex items-center justify-center w-55 gap-2 h-10 text-gray-400">
+          <Link href={"/impressum"}>Impressum</Link>
+          <span>|</span>
+          <Link href={"/datenschutz"}>Datenschutz</Link>
+        </div>
+      </body>
     </html>
   );
 }
