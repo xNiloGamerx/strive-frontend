@@ -1,14 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import {
   HistoryIcon,
   HouseIcon,
-  LucideProps,
+  PanelRightCloseIcon,
+  PanelRightOpenIcon,
   TrophyIcon,
   UserIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { ForwardRefExoticComponent, ReactElement, RefAttributes } from "react";
+import { type ReactElement, useState } from "react";
 
 interface SidebarProps {
   username: string;
@@ -38,8 +41,9 @@ type Routes = {
 };
 
 export default function Sidebar({ username }: SidebarProps) {
+  const [collapsed, setCollapsed] = useState<boolean>(true);
+
   const pathname = usePathname();
-  console.log(pathname);
 
   const routes: Routes = {
     overview: {
@@ -65,15 +69,30 @@ export default function Sidebar({ username }: SidebarProps) {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-80 h-full p-2 bg-white rounded-md shadow-md">
-      <div className="flex items-center justify-center mx-4 py-4 border-b border-gray-300">
+    <div
+      className={`flex flex-col gap-3 ${collapsed ? "w-14" : `w-80`} h-full p-2 bg-white rounded-md shadow-md transition-[width] duration-300`}
+    >
+      <button
+        className={`flex items-center pt-2 cursor-pointer ${collapsed ? "justify-center" : "justify-start"}`}
+        type="button"
+        onClick={() => setCollapsed(!collapsed)}
+      >
+        {collapsed ? (
+          <PanelRightCloseIcon className="w-6 h-6" />
+        ) : (
+          <PanelRightOpenIcon className="w-6 h-6" />
+        )}
+      </button>
+      <div
+        className={`flex items-center justify-center ${!collapsed && "mx-4"} pb-4 border-b border-gray-300`}
+      >
         <Link className="cursor-pointer" href={routes.overview.route}>
           <Image
-            src="/logo.svg"
+            src={collapsed ? "/favicon.ico" : "/logo.svg"}
             alt="strave logo"
             width={28}
             height={8}
-            className="w-28 h-8"
+            className={collapsed ? "w-8 h-8" : "w-28 h-8"}
             loading="eager"
           />
         </Link>
@@ -84,7 +103,7 @@ export default function Sidebar({ username }: SidebarProps) {
             key !== "profile" && (
               <Link key={value.route} href={value.route}>
                 <div
-                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer ${pathname === value.route ? "bg-black text-gray-100" : "hover:bg-gray-100"}`}
+                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer ${pathname === value.route ? "bg-black text-gray-100" : "hover:bg-gray-100"} ${collapsed && "justify-center"}`}
                 >
                   <div
                     className={
@@ -95,7 +114,7 @@ export default function Sidebar({ username }: SidebarProps) {
                   >
                     {value.icon}
                   </div>
-                  <p className="">{value.label}</p>
+                  <p className={`${collapsed && "hidden"}`}>{value.label}</p>
                 </div>
               </Link>
             ),
@@ -120,10 +139,12 @@ export default function Sidebar({ username }: SidebarProps) {
         </Link> */}
         <Link className="mt-auto" href={routes.profile.route}>
           <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
-            <div className="p-2.5 border border-[#6B6B6B] rounded-md">
+            <div
+              className={`rounded-md ${!collapsed && "p-2.5 border border-[#6B6B6B]"}`}
+            >
               {routes.profile.icon}
             </div>
-            <div className="flex flex-col">
+            <div className={`flex flex-col ${collapsed && "hidden"}`}>
               <p className="m-0">{username}</p>
               <p className="text-[#6B6B6B] text-sm">test@gmail.com</p>
             </div>
