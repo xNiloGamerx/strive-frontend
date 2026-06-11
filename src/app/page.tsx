@@ -7,6 +7,7 @@ import SimpleDropdown from "@/components/simpleDropdown";
 import Link from "next/link";
 import Image from "next/image";
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
+import { redirect } from "next/navigation";
 
 type Message = {
   messageLevel: "info" | "warning" | "error";
@@ -25,7 +26,7 @@ export default function Home() {
   );
 
   const [acceptedLocalStorage, setAcceptedLocalStorage] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [openStorageBanner, setOpenStorageBanner] = useState<boolean>(false);
 
   const fields = {
@@ -39,6 +40,14 @@ export default function Home() {
       required: true,
     },
   };
+
+  const redirectPath = "/dashboard/overview";
+
+  useEffect(() => {
+    if (localStorage.getItem("user-id")) {
+      redirect(redirectPath);
+    }
+  }, []);
 
   useEffect(() => {
     setAcceptedLocalStorage(
@@ -57,7 +66,7 @@ export default function Home() {
       return;
     }
 
-    let valid = false;
+    let valid = true;
     if (fields.username.required && username.trim() === "") {
       setUsernameMessage({
         messageLevel: "error",
@@ -89,6 +98,13 @@ export default function Home() {
     }
 
     if (!valid) return;
+
+    localStorage.setItem("user-id", crypto.randomUUID());
+    localStorage.setItem("username", username);
+    localStorage.setItem("gender", gender);
+    localStorage.setItem("weight-class", weightClass);
+
+    redirect(redirectPath);
   };
 
   return (
