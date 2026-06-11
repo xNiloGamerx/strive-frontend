@@ -4,6 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import Image from "next/image";
 
 interface TopUserTableProps {
   data: User[];
@@ -42,13 +43,15 @@ export default function TopUserTable({ data }: TopUserTableProps) {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  table.getRowModel().rows.map((row) => console.log(row));
+
   return (
     <div className="rounded-md overflow-hidden border border-gray-300">
       <div className="flex items-center">
         <h2 className="font-bold text-xl px-4 py-2">Top Sportler</h2>
         <div className="flex items-center gap-1 border border-orange-500 rounded-full px-1.5 py-0.5">
           <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
-          <span className="text-sm text-orange-500">Top 10</span>
+          <span className="text-sm text-orange-500">Top 5</span>
         </div>
       </div>
       <table border={1}>
@@ -71,7 +74,11 @@ export default function TopUserTable({ data }: TopUserTableProps) {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr
+              key={row.id}
+              className={`animate-slide-in-right opacity-0`}
+              style={{ animationDelay: `${15 * (Number(row.id) * 4)}ms` }}
+            >
               {row.getVisibleCells().map((cell) => (
                 <td className="px-4 py-2" key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -89,26 +96,44 @@ function getRankDesign(rank: number) {
   switch (rank) {
     case 1:
       return (
-        <div className="flex items-center justify-center w-2 h-2 bg-orange-300 rounded-full p-3">
-          <span>{rank}</span>
+        <div className="flex items-center justify-center">
+          <Image
+            src="/logo/mini/logo_mini_gold.svg"
+            width={10}
+            height={10}
+            className="w-8 h-8"
+            alt="strive mini logo gold"
+          />
         </div>
       );
     case 2:
       return (
-        <div className="flex items-center justify-center w-2 h-2 bg-gray-500 rounded-full p-3">
-          <span>{rank}</span>
+        <div className="flex items-center justify-center">
+          <Image
+            src="/logo/mini/logo_mini_silver.svg"
+            width={10}
+            height={10}
+            className="w-8 h-8"
+            alt="strive mini logo gold"
+          />
         </div>
       );
     case 3:
       return (
-        <div className="flex items-center justify-center w-2 h-2 bg-orange-900 rounded-full p-3">
-          <span>{rank}</span>
+        <div className="flex items-center justify-center">
+          <Image
+            src="/logo/mini/logo_mini_bronze.svg"
+            width={10}
+            height={10}
+            className="w-8 h-8"
+            alt="strive mini logo gold"
+          />
         </div>
       );
     default:
       return (
-        <div className="flex items-center justify-center w-2 h-2 rounded-full p-3">
-          <span>{rank}</span>
+        <div className="flex items-center justify-center w-8 h-8">
+          <span className="flex items-center justify-center">{rank}</span>
         </div>
       );
   }

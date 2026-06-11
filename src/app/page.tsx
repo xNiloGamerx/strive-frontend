@@ -4,7 +4,6 @@ import Banner from "@/components/banner";
 import Button from "@/components/button";
 import Input from "@/components/input";
 import SimpleDropdown from "@/components/simpleDropdown";
-import Link from "next/link";
 import Image from "next/image";
 import { type ChangeEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
@@ -116,14 +115,14 @@ export default function Home() {
           <div className="flex gap-2 pl-3">
             <span className="flex justify-center bg-white dark:bg-black px-12 py-1.5 rounded-lg shadow-md">
               <Image
-                src="/logo.svg"
+                src="/logo/normal/logo_black.svg"
                 alt="strave logo"
                 width={28}
                 height={8}
                 className="w-28 h-8 block dark:hidden"
               />
               <Image
-                src="/logo_white.svg"
+                src="/logo/normal/logo_white.svg"
                 alt="strave logo"
                 width={28}
                 height={8}

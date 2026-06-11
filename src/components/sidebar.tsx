@@ -89,7 +89,11 @@ export default function Sidebar({ username, weightClass }: SidebarProps) {
       >
         <Link className="cursor-pointer" href={routes.overview.route}>
           <Image
-            src={collapsed ? "/favicon.ico" : "/logo.svg"}
+            src={
+              collapsed
+                ? "/logo/mini/logo_mini_black.svg"
+                : "/logo/normal/logo_black.svg"
+            }
             alt="strave logo"
             width={28}
             height={8}
@@ -97,7 +101,11 @@ export default function Sidebar({ username, weightClass }: SidebarProps) {
             loading="eager"
           />
           <Image
-            src={collapsed ? "/favicon.ico" : "/logo_white.svg"}
+            src={
+              collapsed
+                ? "/logo/mini/logo_mini_white.svg"
+                : "/logo/normal/logo_white.svg"
+            }
             alt="strave logo"
             width={28}
             height={8}

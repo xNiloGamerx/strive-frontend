@@ -79,7 +79,7 @@ export default function Overview() {
     <div className="text-black dark:text-gray-100">
       <div>
         <div>
-          <div className="bg-white w-full rounded-md p-4 shadow-md">
+          <div className="bg-white w-full rounded-md p-2 shadow-md">
             <TopUserTable data={data} />
           </div>
           <div>Quick Daten Eintragen</div>
