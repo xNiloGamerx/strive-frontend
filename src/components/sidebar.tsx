@@ -15,6 +15,7 @@ import { type ReactElement, useState } from "react";
 
 interface SidebarProps {
   username: string;
+  weightClass: string;
 }
 
 type Routes = {
@@ -40,7 +41,7 @@ type Routes = {
   };
 };
 
-export default function Sidebar({ username }: SidebarProps) {
+export default function Sidebar({ username, weightClass }: SidebarProps) {
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
   const pathname = usePathname();
@@ -136,7 +137,7 @@ export default function Sidebar({ username }: SidebarProps) {
             </div>
             <div className={`flex flex-col ${collapsed && "hidden"}`}>
               <p className="m-0 text-black dark:text-white">{username}</p>
-              <p className="text-[#6B6B6B] text-sm">test@gmail.com</p>
+              <p className="text-[#6B6B6B] text-sm">Klasse: {weightClass}</p>
             </div>
           </div>
         </Link>
