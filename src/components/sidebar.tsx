@@ -41,7 +41,7 @@ type Routes = {
 };
 
 export default function Sidebar({ username }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState<boolean>(true);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
   const pathname = usePathname();
 
@@ -103,7 +103,7 @@ export default function Sidebar({ username }: SidebarProps) {
             key !== "profile" && (
               <Link key={value.route} href={value.route}>
                 <div
-                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer ${pathname === value.route ? "bg-black text-gray-100" : "hover:bg-gray-100"} ${collapsed && "justify-center"}`}
+                  className={`flex items-center gap-2 p-2 rounded-md cursor-pointer transition-[background-color] duration-300 ${pathname === value.route ? "bg-black text-gray-100" : "hover:bg-gray-100"} ${collapsed && "justify-center"}`}
                 >
                   <div
                     className={
@@ -138,7 +138,7 @@ export default function Sidebar({ username }: SidebarProps) {
           </div>
         </Link> */}
         <Link className="mt-auto" href={routes.profile.route}>
-          <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer">
+          <div className="flex items-center gap-2 p-2 rounded-md transition-[background-color] duration-300 hover:bg-gray-100 cursor-pointer">
             <div
               className={`rounded-md ${!collapsed && "p-2.5 border border-[#6B6B6B]"}`}
             >
