@@ -1,0 +1,115 @@
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+
+interface TopUserTableProps {
+  data: User[];
+}
+
+export default function TopUserTable({ data }: TopUserTableProps) {
+  const columnHelper = createColumnHelper<User>();
+
+  const defaultColumns = [
+    columnHelper.accessor("rank.rank", {
+      header: "",
+      cell: (info) => getRankDesign(info.cell.getValue()),
+      footer: (info) => info.column.id,
+    }),
+    columnHelper.accessor("name", {
+      header: () => "Name",
+      footer: (props) => props.column.id,
+    }),
+    columnHelper.accessor("weightClass", {
+      header: () => "Gewichtsklasse",
+      footer: (props) => props.column.id,
+    }),
+    columnHelper.accessor("rank.exercise", {
+      header: () => "Übung",
+      footer: (props) => props.column.id,
+    }),
+    columnHelper.accessor("rank.weight", {
+      header: () => "Gewicht",
+      footer: (props) => props.column.id,
+    }),
+  ];
+
+  const table = useReactTable({
+    data,
+    columns: defaultColumns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <div className="rounded-md overflow-hidden border border-gray-300">
+      <div className="flex items-center">
+        <h2 className="font-bold text-xl px-4 py-2">Top Sportler</h2>
+        <div className="flex items-center gap-1 border border-orange-500 rounded-full px-1.5 py-0.5">
+          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+          <span className="text-sm text-orange-500">Top 10</span>
+        </div>
+      </div>
+      <table border={1}>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  className="bg-[#F9FBFC] text-left px-4 py-2"
+                  key={header.id}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td className="px-4 py-2" key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function getRankDesign(rank: number) {
+  switch (rank) {
+    case 1:
+      return (
+        <div className="flex items-center justify-center w-2 h-2 bg-orange-300 rounded-full p-3">
+          <span>{rank}</span>
+        </div>
+      );
+    case 2:
+      return (
+        <div className="flex items-center justify-center w-2 h-2 bg-gray-500 rounded-full p-3">
+          <span>{rank}</span>
+        </div>
+      );
+    case 3:
+      return (
+        <div className="flex items-center justify-center w-2 h-2 bg-orange-900 rounded-full p-3">
+          <span>{rank}</span>
+        </div>
+      );
+    default:
+      return (
+        <div className="flex items-center justify-center w-2 h-2 rounded-full p-3">
+          <span>{rank}</span>
+        </div>
+      );
+  }
+}
