@@ -1,4 +1,9 @@
-import { ChangeEvent, type RefObject } from "react";
+import {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  type RefObject,
+} from "react";
 import Message from "./message";
 
 interface InputProps {
@@ -6,6 +11,9 @@ interface InputProps {
   label?: string;
   placeholder: string;
   required?: boolean;
+  type?: HTMLInputTypeAttribute | undefined;
+  min?: number;
+  max?: number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   messageLevel?: "info" | "warning" | "error";
   messageText?: string;
@@ -16,6 +24,9 @@ export default function Input({
   label,
   placeholder,
   required,
+  type,
+  min,
+  max,
   onChange,
   messageLevel,
   messageText,
@@ -28,7 +39,9 @@ export default function Input({
       <input
         ref={ref}
         className="p-2 w-full border border-gray-200 dark:border-gray-500 rounded-md text-base focus:outline-1 focus:outline-gray-400"
-        type="text"
+        type={type ? type : "text"}
+        min={min}
+        max={max}
         placeholder={placeholder}
         onChange={onChange}
         required={required}

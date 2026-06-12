@@ -43,10 +43,8 @@ export default function TopUserTable({ data }: TopUserTableProps) {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  table.getRowModel().rows.map((row) => console.log(row));
-
   return (
-    <div className="rounded-md overflow-hidden border border-gray-300">
+    <div className="w-full h-full flex flex-col rounded-md overflow-hidden border border-gray-300">
       <div className="flex items-center">
         <h2 className="font-bold text-xl px-4 py-2">Top Sportler</h2>
         <div className="flex items-center gap-1 border border-orange-500 rounded-full px-1.5 py-0.5">
@@ -54,7 +52,7 @@ export default function TopUserTable({ data }: TopUserTableProps) {
           <span className="text-sm text-orange-500">Top 5</span>
         </div>
       </div>
-      <table border={1}>
+      <table className="grow" border={1}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -72,7 +70,7 @@ export default function TopUserTable({ data }: TopUserTableProps) {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className="">
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
@@ -132,7 +130,7 @@ function getRankDesign(rank: number) {
       );
     default:
       return (
-        <div className="flex items-center justify-center w-8 h-8">
+        <div className="flex items-center justify-center w-full h-full">
           <span className="flex items-center justify-center">{rank}</span>
         </div>
       );

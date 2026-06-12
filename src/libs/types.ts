@@ -11,3 +11,8 @@ type Rank = {
   exercise: string;
   weight: string;
 };
+
+type Message = {
+  messageLevel: "info" | "warning" | "error";
+  messageText: string;
+};

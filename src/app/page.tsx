@@ -8,11 +8,6 @@ import Image from "next/image";
 import { type ChangeEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 
-type Message = {
-  messageLevel: "info" | "warning" | "error";
-  messageText: string;
-};
-
 export default function Home() {
   const [username, setUsername] = useState<string>("");
   const [gender, setGender] = useState<string>("");

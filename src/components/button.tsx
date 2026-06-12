@@ -26,7 +26,7 @@ export default function Button({
   };
 
   return (
-    <div className="grow">
+    <div className="w-full">
       <button
         className={`w-full p-2 rounded-xl ${styles[variant]} ${className}`}
         onClick={onClick}

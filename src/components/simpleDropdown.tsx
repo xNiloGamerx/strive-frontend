@@ -11,7 +11,7 @@ import Message from "./message";
 
 interface SimpleDropdownProps {
   label?: string;
-  placeholder?: string;
+  placeholder: string;
   items: string[];
   required?: boolean;
   onChange: (value: string) => void;

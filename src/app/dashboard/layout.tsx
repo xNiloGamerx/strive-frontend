@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         username={username ? username : ""}
         weightClass={weightClass ? weightClass : ""}
       />
-      <main className="pl-4">{children}</main>
+      <main className="w-full pl-4">{children}</main>
     </div>
   );
 }
