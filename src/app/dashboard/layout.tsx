@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }, []);
 
   return (
-    <div className="relative flex grow p-4 bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
+    <div className="relative flex grow p-6 bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
       <Sidebar
         username={username ? username : ""}
         weightClass={weightClass ? weightClass : ""}

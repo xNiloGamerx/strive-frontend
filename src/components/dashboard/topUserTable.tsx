@@ -45,8 +45,8 @@ export default function TopUserTable({ data }: TopUserTableProps) {
 
   return (
     <div className="w-full h-full flex flex-col rounded-md overflow-hidden border border-gray-300">
-      <div className="flex items-center">
-        <h2 className="font-bold text-xl px-4 py-2">Top Sportler</h2>
+      <div className="flex items-center gap-2 px-4 py-2">
+        <h2 className="font-bold text-xl">Top Sportler</h2>
         <div className="flex items-center gap-1 border border-orange-500 rounded-full px-1.5 py-0.5">
           <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
           <span className="text-sm text-orange-500">Top 5</span>

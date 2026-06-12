@@ -16,3 +16,8 @@ type Message = {
   messageLevel: "info" | "warning" | "error";
   messageText: string;
 };
+
+type ProgressData = {
+  day: Date;
+  weight: number;
+};

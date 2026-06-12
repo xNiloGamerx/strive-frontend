@@ -21,7 +21,7 @@ export default function RootLayout({
     >
       <body className="h-full flex flex-col">
         {children}
-        <div className="absolute bottom-0 left-[calc(50%-110px)] flex items-center justify-center w-55 gap-2 h-10 text-gray-400">
+        <div className="absolute bottom-2 left-[calc(50%-110px)] flex items-center justify-center w-55 gap-2 h-2 text-gray-400">
           <Link href={"/impressum"}>Impressum</Link>
           <span>|</span>
           <Link href={"/datenschutz"}>Datenschutz</Link>
