@@ -8,7 +8,7 @@ import {
 import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type DataPair = {
   [key: string]: User[];
@@ -31,6 +31,11 @@ export default function TopUserTable({
   const [currentLabel, setCurrentLabel] = useState<string>(
     Object.keys(dataPairs)[0],
   );
+  const [animateRowsIn, setAnimateRowsIn] = useState<boolean>(true);
+
+  const handleRowAnimationEnd = () => {
+    setAnimateRowsIn(false);
+  };
 
   const handleLabelClick = (label: string) => {
     setCurrentLabel(label);
@@ -94,7 +99,7 @@ export default function TopUserTable({
       <div
         className={`w-full ${currentData.length > 7 && "h-full"} flex flex-col overflow-y-auto overflow-x-hidden`}
       >
-        <div className="flex items-center justify-between px-4 py-2 sticky top-0">
+        <div className="flex items-center justify-between px-4 py-2 sticky top-0 z-0">
           <div className="flex gap-2">
             <h2 className="font-bold text-xl">{title}</h2>
             {pillText && (
@@ -105,7 +110,7 @@ export default function TopUserTable({
             )}
           </div>
           {Object.keys(dataPairs).length > 1 && (
-            <div className="flex self-end rounded-md border border-gray-300 divide-x divide-gray-300 overflow-hidden">
+            <div className="flex self-end rounded-md border bg-white border-gray-300 divide-x divide-gray-300 overflow-hidden">
               {Object.keys(dataPairs).map((value) => (
                 <button
                   key={value}
@@ -119,8 +124,8 @@ export default function TopUserTable({
             </div>
           )}
         </div>
-        <table className="h-full" border={1}>
-          <thead className="sticky top-0 z-1">
+        <table className="h-full z-1" border={1}>
+          <thead className="sticky top-0 z-2">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -150,8 +155,9 @@ export default function TopUserTable({
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="animate-slide-in-right opacity-0 bg-white"
+                className={`${animateRowsIn ? "animate-slide-in-right opacity-0" : "opacity-100"} bg-white`}
                 style={{ animationDelay: `${15 * (Number(row.id) * 4)}ms` }}
+                onAnimationEnd={handleRowAnimationEnd}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td className="px-4 py-4" key={cell.id}>
