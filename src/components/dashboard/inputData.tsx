@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import Input from "../input";
 import SimpleDropdown from "../simpleDropdown";
 import Button from "../button";
+import { Message } from "@/libs/types";
 
 export default function InputData() {
   const [weight, setWeight] = useState<number>(0);
@@ -33,8 +34,8 @@ export default function InputData() {
   }, [weight]);
 
   return (
-    <div className="flex flex-col h-full gap-2">
-      <h2 className="self-center text-2xl font-bold py-4">Daten eintragen</h2>
+    <div className="flex flex-col h-full gap-2 p-4">
+      <h2 className="self-center text-2xl font-bold">Daten eintragen</h2>
       <SimpleDropdown
         label="Übung"
         placeholder="Was hast du gemacht?"

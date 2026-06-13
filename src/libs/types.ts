@@ -1,4 +1,4 @@
-type User = {
+export type User = {
   id: string;
   name: string;
   gender: string;
@@ -6,18 +6,18 @@ type User = {
   rank?: Rank;
 };
 
-type Rank = {
+export type Rank = {
   rank: number;
   exercise: string;
   weight: string;
 };
 
-type Message = {
+export type Message = {
   messageLevel: "info" | "warning" | "error";
   messageText: string;
 };
 
-type ProgressData = {
-  day: Date;
+export type ProgressData = {
+  day: string;
   weight: number;
 };

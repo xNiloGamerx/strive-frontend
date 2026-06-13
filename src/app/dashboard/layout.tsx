@@ -3,7 +3,7 @@
 import Sidebar from "@/components/sidebar";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }, []);
 
   return (
-    <div className="relative flex grow p-6 bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
+    <div className="relative flex grow p-6 font-sans max-h-screen">
       <Sidebar
         username={username ? username : ""}
         weightClass={weightClass ? weightClass : ""}

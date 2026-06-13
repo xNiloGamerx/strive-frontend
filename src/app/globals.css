@@ -21,8 +21,14 @@
   }
 }
 
+::-webkit-scrollbar-track {
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;
 }

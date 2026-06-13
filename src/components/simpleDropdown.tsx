@@ -55,7 +55,7 @@ export default function SimpleDropdown({
   return (
     <div className="relative">
       <p className="font-semibold">
-        {label} {required ? <span className="text-red-500">*</span> : <></>}
+        {label} {required && <span className="text-red-500">*</span>}
       </p>
       <button
         ref={btnRef}

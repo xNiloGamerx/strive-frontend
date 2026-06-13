@@ -19,7 +19,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="h-full flex flex-col">
+      <body className="h-full flex flex-col bg-[#F3F5F9] dark:bg-[#0d0d0e]">
+        {" "}
+        {/* Old bg: bg-zinc-50 */}
         {children}
         <div className="absolute bottom-2 left-[calc(50%-110px)] flex items-center justify-center w-55 gap-2 h-2 text-gray-400">
           <Link href={"/impressum"}>Impressum</Link>

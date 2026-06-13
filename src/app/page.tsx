@@ -7,6 +7,7 @@ import SimpleDropdown from "@/components/simpleDropdown";
 import Image from "next/image";
 import { type ChangeEvent, useEffect, useState } from "react";
 import { redirect } from "next/navigation";
+import type { Message } from "@/libs/types";
 
 export default function Home() {
   const [username, setUsername] = useState<string>("");
@@ -102,7 +103,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col grow justify-between bg-zinc-50 font-sans dark:bg-[#0a0a0a]">
+    <div className="flex flex-col grow justify-between font-sans">
       <div className="w-full h-10"></div>
 
       <div className="flex items-center justify-center grow">
