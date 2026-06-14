@@ -34,7 +34,7 @@ export default function InputData() {
   }, [weight]);
 
   return (
-    <div className="flex flex-col h-full gap-2 p-4">
+    <div className="flex flex-col justify-center w-full h-full gap-2 p-4">
       <h2 className="self-center text-2xl font-bold">Daten eintragen</h2>
       <SimpleDropdown
         label="Übung"

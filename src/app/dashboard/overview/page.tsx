@@ -2,8 +2,10 @@
 
 import InputData from "@/components/dashboard/inputData";
 import PersonalProgressDiagram from "@/components/dashboard/personalProgressDiagram";
+import StreakDisplay from "@/components/dashboard/streakDisplay";
 import TopUserTable from "@/components/dashboard/topUserTable";
 import type { ProgressData, User } from "@/libs/types";
+import { CheckIcon, FlameIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Overview() {
@@ -315,8 +317,13 @@ export default function Overview() {
     <div className="w-full h-full max-h-screen text-black dark:text-gray-100">
       <div className="h-full max-h-screen flex flex-col gap-4">
         <div className="min-h-0 flex gap-4 flex-1">
-          <div className="bg-white rounded-md p-2 shadow-md flex-1">
-            <InputData />
+          <div className="flex flex-col gap-4 flex-1">
+            <div className="bg-white rounded-md p-2 shadow-md flex-2">
+              <InputData />
+            </div>
+            <div className="bg-white rounded-md p-2 shadow-md flex-1">
+              <StreakDisplay />
+            </div>
           </div>
           <div className="bg-white rounded-md p-2 shadow-md flex-2">
             <TopUserTable

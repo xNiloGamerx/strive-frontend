@@ -70,7 +70,7 @@ export default function SimpleDropdown({
       </button>
       <div
         ref={dropdownRef}
-        className={`${open ? "" : "hidden"} absolute flex flex-col w-full mt-1 bg-white dark:bg-black text-black dark:text-white shadow-md rounded-sm max-h-40 overflow-y-scroll z-999`}
+        className={`${open ? "" : "hidden"} absolute flex flex-col w-full mt-1 bg-white dark:bg-black text-black dark:text-white shadow-md rounded-sm max-h-40 overflow-y-auto z-999`}
       >
         {items.map((text) => (
           <button

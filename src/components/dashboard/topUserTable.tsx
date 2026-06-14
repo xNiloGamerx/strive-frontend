@@ -156,7 +156,7 @@ export default function TopUserTable({
               <tr
                 key={row.id}
                 className={`${animateRowsIn ? "animate-slide-in-right opacity-0" : "opacity-100"} bg-white`}
-                style={{ animationDelay: `${15 * (Number(row.id) * 4)}ms` }}
+                style={{ animationDelay: `${15 * Number(row.id)}ms` }}
                 onAnimationEnd={handleRowAnimationEnd}
               >
                 {row.getVisibleCells().map((cell) => (
