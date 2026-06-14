@@ -5,7 +5,8 @@ import PersonalProgressDiagram from "@/components/dashboard/personalProgressDiag
 import StreakDisplay from "@/components/dashboard/streakDisplay";
 import TopUserTable from "@/components/dashboard/topUserTable";
 import type { ProgressData, User } from "@/libs/types";
-import { CheckIcon, FlameIcon } from "lucide-react";
+import type { Metadata } from "next";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Overview() {
@@ -304,6 +305,8 @@ export default function Overview() {
   ]);
 
   useEffect(() => {
+    document.title = "Overview";
+
     if (localStorage.getItem("user-id")) {
       setUserId(localStorage.getItem("user-id"));
     }

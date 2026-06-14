@@ -1,4 +1,4 @@
-import { User } from "@/libs/types";
+import type { Log } from "@/libs/types";
 import {
   createColumnHelper,
   flexRender,
@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type DataPair = {
-  [key: string]: User[];
+  [key: string]: Log[];
 };
 
 interface TopUserTableProps {
@@ -25,7 +25,7 @@ export default function TopUserTable({
   pillText,
   dataPairs,
 }: TopUserTableProps) {
-  const [currentData, setCurrentData] = useState<User[]>(
+  const [currentData, setCurrentData] = useState<Log[]>(
     Object.values(dataPairs)[0],
   );
   const [currentLabel, setCurrentLabel] = useState<string>(
@@ -42,39 +42,22 @@ export default function TopUserTable({
     setCurrentData(dataPairs[label]);
   };
 
-  const columnHelper = createColumnHelper<User>();
+  const columnHelper = createColumnHelper<Log>();
 
   const defaultColumns = [
-    columnHelper.accessor("rank.rank", {
-      header: "",
-      cell: (info) => getRankDesign(info.cell.getValue()),
+    columnHelper.accessor("date", {
+      header: "Datum",
       footer: (info) => info.column.id,
     }),
-    columnHelper.accessor("name", {
-      header: () => "Name",
-      cell: (info) => (
-        <Link
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-800 underline"
-          href={`/dashboard/profile/${info.row.original.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={`Öffne die Profilseite von ${info.cell.getValue()}`}
-        >
-          {info.cell.getValue()}
-          <ExternalLinkIcon className="w-4 h-4" />
-        </Link>
-      ),
+    columnHelper.accessor("time", {
+      header: () => "Uhrzeit",
       footer: (props) => props.column.id,
     }),
-    columnHelper.accessor("weightClass", {
-      header: () => "Gewichtsklasse",
-      footer: (props) => props.column.id,
-    }),
-    columnHelper.accessor("rank.exercise", {
+    columnHelper.accessor("exercise", {
       header: () => "Übung",
       footer: (props) => props.column.id,
     }),
-    columnHelper.accessor("rank.weight", {
+    columnHelper.accessor("weight", {
       header: () => "Gewicht",
       footer: (props) => props.column.id,
     }),
@@ -163,51 +146,4 @@ export default function TopUserTable({
       </div>
     </div>
   );
-}
-
-function getRankDesign(rank: number) {
-  switch (rank) {
-    case 1:
-      return (
-        <div className="flex items-center justify-center">
-          <Image
-            src="/logo/mini/logo_mini_gold.svg"
-            width={10}
-            height={10}
-            className="w-8 h-8"
-            alt="strive mini logo gold"
-          />
-        </div>
-      );
-    case 2:
-      return (
-        <div className="flex items-center justify-center">
-          <Image
-            src="/logo/mini/logo_mini_silver.svg"
-            width={10}
-            height={10}
-            className="w-8 h-8"
-            alt="strive mini logo gold"
-          />
-        </div>
-      );
-    case 3:
-      return (
-        <div className="flex items-center justify-center">
-          <Image
-            src="/logo/mini/logo_mini_bronze.svg"
-            width={10}
-            height={10}
-            className="w-8 h-8"
-            alt="strive mini logo gold"
-          />
-        </div>
-      );
-    default:
-      return (
-        <div className="flex items-center justify-center w-full h-full">
-          <span className="flex items-center justify-center">{rank}</span>
-        </div>
-      );
-  }
 }

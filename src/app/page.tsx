@@ -102,6 +102,10 @@ export default function Home() {
     redirect(redirectPath);
   };
 
+  useEffect(() => {
+    document.title = "Sign up";
+  }, []);
+
   return (
     <div className="flex flex-col grow justify-between font-sans">
       <div className="w-full h-10"></div>

@@ -7,6 +7,8 @@ export default function Profile() {
   const [username, setUsername] = useState<null | string>(null);
 
   useEffect(() => {
+    document.title = "Profil";
+
     if (localStorage.getItem("user-id")) {
       setUserId(localStorage.getItem("user-id"));
     }

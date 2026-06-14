@@ -5,7 +5,7 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Strive | Sign up",
+  title: "strive",
   description: "Gym Leaderboard",
 };
 

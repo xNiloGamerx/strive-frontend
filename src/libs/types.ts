@@ -21,3 +21,11 @@ export type ProgressData = {
   day: string;
   weight: number;
 };
+
+export type Log = {
+  user: User;
+  date: string;
+  time: string;
+  exercise: string;
+  weight: string;
+};

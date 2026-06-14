@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  HistoryIcon,
+  ClipboardClockIcon,
   HouseIcon,
   PanelRightCloseIcon,
   PanelRightOpenIcon,
@@ -58,9 +58,9 @@ export default function Sidebar({ username, weightClass }: SidebarProps) {
       icon: <TrophyIcon className="w-5 h-5" />,
     },
     history: {
-      label: "History",
-      route: "/dashboard/history",
-      icon: <HistoryIcon className="w-5 h-5" />,
+      label: "Logs",
+      route: "/dashboard/logs",
+      icon: <ClipboardClockIcon className="w-5 h-5" />,
     },
     profile: {
       label: "Profile",
