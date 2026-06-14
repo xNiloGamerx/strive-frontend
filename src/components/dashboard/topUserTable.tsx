@@ -1,14 +1,14 @@
 import { User } from "@/libs/types";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Table from "../table";
 
 type DataPair = {
   [key: string]: User[];
@@ -31,11 +31,6 @@ export default function TopUserTable({
   const [currentLabel, setCurrentLabel] = useState<string>(
     Object.keys(dataPairs)[0],
   );
-  const [animateRowsIn, setAnimateRowsIn] = useState<boolean>(true);
-
-  const handleRowAnimationEnd = () => {
-    setAnimateRowsIn(false);
-  };
 
   const handleLabelClick = (label: string) => {
     setCurrentLabel(label);
@@ -44,7 +39,7 @@ export default function TopUserTable({
 
   const columnHelper = createColumnHelper<User>();
 
-  const defaultColumns = [
+  const columns = [
     columnHelper.accessor("rank.rank", {
       header: "",
       cell: (info) => getRankDesign(info.cell.getValue()),
@@ -80,12 +75,6 @@ export default function TopUserTable({
     }),
   ];
 
-  const table = useReactTable({
-    data: currentData,
-    columns: defaultColumns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
   return (
     <div className="w-full h-full rounded-md border border-gray-300 overflow-hidden">
       <div
@@ -116,50 +105,7 @@ export default function TopUserTable({
             </div>
           )}
         </div>
-        <table className="bg-white h-full z-1" border={1}>
-          <thead className="sticky top-0 z-2">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    className="bg-[#F9FBFC] text-left px-4 py-2"
-                    key={header.id}
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody className="divide-y divide-gray-300">
-            {currentData.length === 0 && (
-              <tr className="bg-white">
-                <td colSpan={5} className="">
-                  <p className="text-center text-gray-400">
-                    Keine Daten vorhanden!
-                  </p>
-                </td>
-              </tr>
-            )}
-            {table.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                className={`${animateRowsIn ? "animate-slide-in-right opacity-0" : "opacity-100"} bg-white`}
-                style={{ animationDelay: `${15 * Number(row.id)}ms` }}
-                onAnimationEnd={handleRowAnimationEnd}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td className="px-4 py-4" key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table data={currentData} columns={columns} />
       </div>
     </div>
   );

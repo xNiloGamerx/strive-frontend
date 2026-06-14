@@ -2,16 +2,17 @@ import {
   type ColumnDef,
   flexRender,
   getCoreRowModel,
+  type RowData,
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
 
-interface TableProps {
-  data: unknown[];
-  columns: ColumnDef<unknown, any>[];
+interface TableProps<TData extends RowData> {
+  data: TData[];
+  columns: ColumnDef<TData, any>[];
 }
 
-export default function Table({ data, columns }: TableProps) {
+export default function Table<TData>({ data, columns }: TableProps<TData>) {
   const [animateRowsIn, setAnimateRowsIn] = useState<boolean>(true);
 
   const handleRowAnimationEnd = () => {

@@ -24,11 +24,11 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
 
   const settingsRoutes: SettingsRoutes = {
     settings: {
-      label: "Settings",
+      label: "Einstellungen",
       route: "/dashboard/profile",
     },
     security: {
-      label: "Security",
+      label: "Sicherheit",
       route: "/dashboard/profile/security",
     },
     notifications: {
