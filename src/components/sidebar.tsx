@@ -19,22 +19,7 @@ interface SidebarProps {
 }
 
 type Routes = {
-  overview: {
-    label: string;
-    route: string;
-    icon: ReactElement;
-  };
-  leaderboard: {
-    label: string;
-    route: string;
-    icon: ReactElement;
-  };
-  history: {
-    label: string;
-    route: string;
-    icon: ReactElement;
-  };
-  profile: {
+  [key: string]: {
     label: string;
     route: string;
     icon: ReactElement;

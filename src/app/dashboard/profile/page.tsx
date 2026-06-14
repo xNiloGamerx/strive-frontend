@@ -20,8 +20,7 @@ export default function Profile() {
 
   return (
     <div className="text-black dark:text-gray-100">
-      <p>Profile</p>
-      <p>{userId}</p>
+      <p>Settings</p>
     </div>
   );
 }
