@@ -60,7 +60,7 @@ export default function TopUserTable({
   ];
 
   return (
-    <div className="w-full h-full rounded-md border border-gray-300 overflow-hidden">
+    <div className="w-full h-full rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden">
       <div
         className={`w-full ${currentData.length > 7 && "h-full"} flex flex-col overflow-y-auto overflow-x-hidden`}
       >

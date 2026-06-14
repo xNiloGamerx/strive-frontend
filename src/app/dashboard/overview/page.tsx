@@ -321,14 +321,14 @@ export default function Overview() {
       <div className="h-full max-h-screen flex flex-col gap-4">
         <div className="min-h-0 flex gap-4 flex-1">
           <div className="flex flex-col gap-4 flex-1">
-            <div className="bg-white rounded-md p-2 shadow-md flex-2">
+            <div className="bg-white dark:bg-black rounded-md p-2 shadow-md flex-2">
               <InputData />
             </div>
-            <div className="bg-white rounded-md p-2 shadow-md flex-1">
+            <div className="bg-white dark:bg-black rounded-md p-2 shadow-md flex-1">
               <StreakDisplay />
             </div>
           </div>
-          <div className="bg-white rounded-md p-2 shadow-md flex-2">
+          <div className="bg-white dark:bg-black rounded-md p-2 shadow-md flex-2">
             <TopUserTable
               title="Top Sportler"
               pillText="Top 8"
@@ -340,10 +340,10 @@ export default function Overview() {
           </div>
         </div>
         <div className="min-h-0 flex gap-4 flex-1 h-full">
-          <div className="flex bg-white rounded-md p-2 shadow-md flex-2">
+          <div className="flex bg-white dark:bg-black rounded-md p-2 shadow-md flex-2">
             <PersonalProgressDiagram data={personalProgressData} />
           </div>
-          <div className="flex flex-col bg-white rounded-md p-2 shadow-md flex-1">
+          <div className="flex flex-col bg-white dark:bg-black rounded-md p-2 shadow-md flex-1">
             <TopUserTable
               title="Freunde"
               pillText="Alle"

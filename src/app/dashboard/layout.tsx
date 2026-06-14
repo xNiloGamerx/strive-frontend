@@ -1,7 +1,6 @@
 "use client";
 
 import Sidebar from "@/components/sidebar";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 

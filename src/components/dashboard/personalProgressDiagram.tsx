@@ -1,4 +1,6 @@
+import useDarkMode from "@/hooks/useDarkMode";
 import { ProgressData } from "@/libs/types";
+import { useEffect, useState } from "react";
 import {
   CartesianGrid,
   Legend,
@@ -17,6 +19,8 @@ interface PersonalProgressDiagram {
 export default function PersonalProgressDiagram({
   data,
 }: PersonalProgressDiagram) {
+  const isDarkMode = useDarkMode();
+
   const CustomTick = ({ x, y, payload, index, visibleTicksCount }) => {
     const isFirst = index === 0;
     const isLast = index === visibleTicksCount - 1;
@@ -26,6 +30,7 @@ export default function PersonalProgressDiagram({
         x={isLast ? x + 18 : x}
         y={isFirst || isLast ? y + 16 + 15 : y + 16}
         textAnchor={isLast ? "end" : isFirst ? "start" : "middle"}
+        fill={isDarkMode ? "#fff" : "#000"}
       >
         {payload.value}
       </text>
@@ -33,7 +38,7 @@ export default function PersonalProgressDiagram({
   };
 
   return (
-    <div className="w-full h-full flex flex-col rounded-md overflow-hidden border border-gray-300">
+    <div className="w-full h-full flex flex-col rounded-md overflow-hidden border border-gray-300 dark:border-gray-700">
       <div className="px-4 py-2">
         <h2 className="font-bold text-xl">Mein Fortschritt</h2>
       </div>
@@ -58,7 +63,7 @@ export default function PersonalProgressDiagram({
             <Line
               type="linear"
               dataKey="weight"
-              stroke="black"
+              stroke={isDarkMode ? "white" : "black"}
               strokeWidth={2}
               name="Gewicht"
             />

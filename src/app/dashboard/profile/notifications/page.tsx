@@ -19,7 +19,7 @@ export default function ProfileNotifications() {
   }, []);
 
   return (
-    <div>
+    <div className="text-black dark:text-gray-100  px-2">
       <p>Benachrichtigungen</p>
     </div>
   );

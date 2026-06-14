@@ -19,8 +19,8 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className="text-black dark:text-gray-100">
-      <p>Settings</p>
+    <div className="text-black dark:text-gray-100 px-2">
+      <p>Einstellungen</p>
     </div>
   );
 }

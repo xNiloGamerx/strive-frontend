@@ -53,7 +53,7 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <div className="flex items-center gap-2 p-2 rounded-md bg-white shadow-md">
+      <div className="flex items-center gap-2 p-2 rounded-md bg-white dark:bg-black shadow-md">
         <div className="text-[#6B6B6B] rounded-md p-2.5 border border-[#6B6B6B]">
           <UserIcon className="w-6 h-6" />
         </div>
@@ -63,15 +63,15 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
         </div>
       </div>
       <div className="flex">
-        <div className="flex bg-gray-100 border border-gray-300 shadow-md rounded-lg">
+        <div className="flex bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-900 shadow-md rounded-lg">
           {Object.entries(settingsRoutes).map(([key, value], index) => (
             <Link
               key={key}
               href={value.route}
-              className={`rounded-lg py-1.5 px-4 
+              className={`rounded-lg py-1.5 px-4 text-black dark:text-white
                 ${pathname === value.route && index !== 0 && "border-l-2"} 
                 ${pathname === value.route && index !== Object.keys(settingsRoutes).length - 1 && "border-r-2"} 
-                ${pathname === value.route && "bg-white border-gray-300 shadow-md"}`}
+                ${pathname === value.route && "bg-white dark:bg-black border-gray-300 dark:border-gray-900 shadow-md"}`}
             >
               <p>{value.label}</p>
             </Link>

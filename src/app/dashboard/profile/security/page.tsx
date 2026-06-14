@@ -19,8 +19,8 @@ export default function ProfileSecurity() {
   }, []);
 
   return (
-    <div>
-      <p>Security</p>
+    <div className="text-black dark:text-gray-100  px-2">
+      <p>Sicherheit</p>
     </div>
   );
 }

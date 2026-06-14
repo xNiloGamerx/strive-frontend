@@ -76,7 +76,7 @@ export default function TopUserTable({
   ];
 
   return (
-    <div className="w-full h-full rounded-md border border-gray-300 overflow-hidden">
+    <div className="w-full h-full rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden">
       <div
         className={`w-full ${currentData.length > 7 && "h-full"} flex flex-col overflow-y-auto overflow-x-hidden`}
       >
@@ -91,12 +91,12 @@ export default function TopUserTable({
             )}
           </div>
           {Object.keys(dataPairs).length > 1 && (
-            <div className="flex self-end rounded-md border bg-white border-gray-300 divide-x divide-gray-300 overflow-hidden">
+            <div className="flex self-end rounded-md border bg-white dark:bg-black border-gray-300 dark:border-gray-500 divide-x divide-gray-300 dark:divide-gray-500 overflow-hidden">
               {Object.keys(dataPairs).map((value) => (
                 <button
                   key={value}
                   type="button"
-                  className={`w-1/2 flex items-center justify-center p-2 px-4 cursor-pointer ${currentLabel === value && "bg-gray-100"} hover:bg-gray-100 active:bg-gray-200`}
+                  className={`w-1/2 flex items-center justify-center p-2 px-4 cursor-pointer ${currentLabel === value && "bg-gray-100 dark:bg-gray-700"} hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-800`}
                   onClick={() => handleLabelClick(value)}
                 >
                   <p className="whitespace-nowrap">{value}</p>

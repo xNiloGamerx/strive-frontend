@@ -26,12 +26,15 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
   });
 
   return (
-    <table className="bg-white h-full z-1" border={1}>
+    <table className="bg-white dark:bg-black h-full z-1" border={1}>
       <thead className="sticky top-0 z-2">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th className="bg-[#F9FBFC] text-left px-4 py-2" key={header.id}>
+              <th
+                className="bg-[#F9FBFC] dark:bg-gray-700 text-left px-4 py-2"
+                key={header.id}
+              >
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext(),
@@ -41,9 +44,9 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
           </tr>
         ))}
       </thead>
-      <tbody className="divide-y divide-gray-300">
+      <tbody className="divide-y divide-gray-300 dark:divide-gray-700">
         {data.length === 0 && (
-          <tr className="bg-white">
+          <tr className="bg-white dark:bg-black">
             <td colSpan={5} className="">
               <p className="text-center text-gray-400">
                 Keine Daten vorhanden!
@@ -54,7 +57,7 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
         {table.getRowModel().rows.map((row) => (
           <tr
             key={row.id}
-            className={`${animateRowsIn ? "animate-slide-in-right opacity-0" : "opacity-100"} bg-white`}
+            className={`${animateRowsIn ? "animate-slide-in-right opacity-0" : "opacity-100"} bg-white dark:bg-black`}
             style={{ animationDelay: `${15 * Number(row.id)}ms` }}
             onAnimationEnd={handleRowAnimationEnd}
           >
