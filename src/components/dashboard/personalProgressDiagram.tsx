@@ -11,6 +11,17 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Props } from "recharts/types/component/Text";
+
+type CustomTickProps = Props & {
+  x: any;
+  y: any;
+  payload: {
+    value: any;
+  };
+  index: any;
+  visibleTicksCount: any;
+};
 
 interface PersonalProgressDiagram {
   data: ProgressData[];
@@ -21,7 +32,13 @@ export default function PersonalProgressDiagram({
 }: PersonalProgressDiagram) {
   const isDarkMode = useDarkMode();
 
-  const CustomTick = ({ x, y, payload, index, visibleTicksCount }) => {
+  const CustomTick = ({
+    x,
+    y,
+    payload,
+    index,
+    visibleTicksCount,
+  }: CustomTickProps) => {
     const isFirst = index === 0;
     const isLast = index === visibleTicksCount - 1;
 
@@ -43,7 +60,13 @@ export default function PersonalProgressDiagram({
         <h2 className="font-bold text-xl">Mein Fortschritt</h2>
       </div>
       <div className="p-8 grow">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer
+          width="100%"
+          height="100%"
+          minWidth={1}
+          minHeight={1}
+          aspect={1.618}
+        >
           <LineChart
             className="aspect-[1.618]"
             data={data}

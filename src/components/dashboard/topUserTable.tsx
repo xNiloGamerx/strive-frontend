@@ -118,8 +118,8 @@ function getRankDesign(rank: number) {
         <div className="flex items-center justify-center">
           <Image
             src="/logo/mini/logo_mini_gold.svg"
-            width={10}
-            height={10}
+            width={8}
+            height={8}
             className="w-8 h-8"
             alt="strive mini logo gold"
           />
@@ -130,8 +130,8 @@ function getRankDesign(rank: number) {
         <div className="flex items-center justify-center">
           <Image
             src="/logo/mini/logo_mini_silver.svg"
-            width={10}
-            height={10}
+            width={8}
+            height={8}
             className="w-8 h-8"
             alt="strive mini logo gold"
           />
@@ -142,8 +142,8 @@ function getRankDesign(rank: number) {
         <div className="flex items-center justify-center">
           <Image
             src="/logo/mini/logo_mini_bronze.svg"
-            width={10}
-            height={10}
+            width={8}
+            height={8}
             className="w-8 h-8"
             alt="strive mini logo gold"
           />

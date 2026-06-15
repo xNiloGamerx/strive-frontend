@@ -3,7 +3,7 @@
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 interface ProfileLayoutProps {
   children: ReactNode;
@@ -17,6 +17,10 @@ type SettingsRoutes = {
 };
 
 export default function ProfileLayout({ children }: ProfileLayoutProps) {
+  const navBarRef = useRef<HTMLDivElement | null>(null);
+  const [navBarWidth, setNavBarWidth] = useState<number>(0);
+  const [currentRouteIndex, setCurrentRouteIndex] = useState<number>(0);
+
   const [username, setUsername] = useState<null | string>(null);
   const [weightClass, setWeightClass] = useState<null | string>(null);
 
@@ -49,7 +53,24 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
     if (localStorage.getItem("weight-class")) {
       setWeightClass(localStorage.getItem("weight-class"));
     }
-  }, []);
+
+    Object.entries(settingsRoutes).forEach(([key, value], index) => {
+      if (value.route === pathname) {
+        setCurrentRouteIndex(index);
+      }
+    });
+
+    const el = navBarRef.current;
+    if (!el) return;
+
+    const update = () => setNavBarWidth(el.clientWidth);
+    update();
+
+    const resizeObserver = new ResizeObserver(update);
+    resizeObserver.observe(el);
+
+    return () => resizeObserver.disconnect();
+  }, [pathname]);
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -63,22 +84,36 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
         </div>
       </div>
       <div className="flex">
-        <div className="flex bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-900 shadow-md rounded-lg">
+        <div
+          ref={navBarRef}
+          className="relative flex w-full bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-900 shadow-md rounded-lg"
+        >
           {Object.entries(settingsRoutes).map(([key, value], index) => (
             <Link
               key={key}
               href={value.route}
-              className={`rounded-lg py-1.5 px-4 text-black dark:text-white
-                ${pathname === value.route && index !== 0 && "border-l-2"} 
-                ${pathname === value.route && index !== Object.keys(settingsRoutes).length - 1 && "border-r-2"} 
-                ${pathname === value.route && "bg-white dark:bg-black border-gray-300 dark:border-gray-900 shadow-md"}`}
+              className={`flex items-center justify-center rounded-lg py-1.5 px-4 text-black dark:text-white`}
+              style={{
+                width: `${navBarWidth / Object.keys(settingsRoutes).length}px`,
+              }}
             >
-              <p>{value.label}</p>
+              <p className="z-1 truncate">{value.label}</p>
             </Link>
           ))}
+          <div
+            className={`absolute h-full rounded-lg bg-white dark:bg-black border-gray-300 dark:border-gray-900 shadow-md transition-all duration-300`}
+            style={{
+              left: `${currentRouteIndex * (navBarWidth / Object.keys(settingsRoutes).length)}px`,
+              width: `${navBarWidth / Object.keys(settingsRoutes).length}px`,
+            }}
+          ></div>
         </div>
       </div>
       <div>{children}</div>
     </div>
   );
 }
+
+// ${pathname === value.route && index !== 0 && "border-l-2"}
+// ${pathname === value.route && index !== Object.keys(settingsRoutes).length - 1 && "border-r-2"}
+// ${pathname === value.route && "bg-white dark:bg-black border-gray-300 dark:border-gray-900 shadow-md"}
