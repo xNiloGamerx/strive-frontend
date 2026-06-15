@@ -20,7 +20,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className=" relative h-full flex flex-col bg-[#F3F5F9] dark:bg-[#0d0d0e] overflow-hidden">
+      <body
+        className=" relative h-full flex flex-col bg-[#F3F5F9] dark:bg-[#0d0d0e] overflow-hidden"
+        cz-shortcut-listen="true"
+      >
         {" "}
         {/* Old bg: bg-zinc-50 */}
         <ThemeButton />

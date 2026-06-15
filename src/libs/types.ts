@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export type User = {
   id: string;
   name: string;
@@ -28,4 +30,9 @@ export type Log = {
   time: string;
   exercise: string;
   weight: string;
+};
+
+export type MultiToggleOption = {
+  label: string;
+  icon?: ReactElement;
 };

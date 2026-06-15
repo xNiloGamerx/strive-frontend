@@ -86,7 +86,7 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
       <div className="flex">
         <div
           ref={navBarRef}
-          className="relative flex w-full bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-900 shadow-md rounded-lg"
+          className="relative flex w-full 2xl:w-1/2 bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-900 shadow-md rounded-lg"
         >
           {Object.entries(settingsRoutes).map(([key, value], index) => (
             <Link
