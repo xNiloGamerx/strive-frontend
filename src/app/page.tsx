@@ -36,7 +36,7 @@ export default function Home() {
     },
   };
 
-  const redirectPath = "/dashboard/overview";
+  const redirectPath = "/dashboard/workout";
 
   useEffect(() => {
     if (localStorage.getItem("user-id")) {

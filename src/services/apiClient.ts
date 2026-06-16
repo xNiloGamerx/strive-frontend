@@ -1,0 +1,146 @@
+import { Exercise, Template, User } from "@/libs/types";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+type exampleData = {
+  users: User[];
+  exercises: Exercise[];
+  templates: Template[];
+};
+
+const users = [
+  {
+    id: "1",
+    name: "Niklas",
+    gender: "Mann",
+    weightClass: "50kg",
+  },
+  {
+    id: "2",
+    name: "Laurence",
+    gender: "Mann",
+    weightClass: "50kg",
+  },
+  {
+    id: "3",
+    name: "Jan",
+    gender: "Mann",
+    weightClass: "30kg",
+  },
+  {
+    id: "4",
+    name: "Jakob",
+    gender: "Mann",
+    weightClass: "50kg",
+  },
+  {
+    id: "5",
+    name: "Nils",
+    gender: "Mann",
+    weightClass: "30kg",
+  },
+];
+
+const exercises = [
+  {
+    id: 1,
+    name: "Around the World",
+    category: "Hantel",
+  },
+  {
+    id: 2,
+    name: "Back Extension",
+    category: "Körpergewicht",
+  },
+  {
+    id: 3,
+    name: "Ball Slams",
+    category: "Maschine/Andere",
+  },
+  {
+    id: 4,
+    name: "Battle Ropes",
+    category: "Cardio",
+  },
+  {
+    id: 5,
+    name: "Bicep Curl",
+    category: "Hantel",
+  },
+];
+
+const templates = [
+  {
+    id: 1,
+    name: "Nachmittags-Workout",
+    exercises: [exercises[1], exercises[3], exercises[4]],
+  },
+  {
+    id: 2,
+    name: "Morgens-Workout",
+    exercises: [exercises[2], exercises[4]],
+  },
+  {
+    id: 3,
+    name: "Home-Workout",
+    exercises: [exercises[1], exercises[3], exercises[4]],
+  },
+  {
+    id: 4,
+    name: "Arbeits-Workout",
+    exercises: [exercises[0], exercises[3], exercises[4]],
+  },
+  {
+    id: 5,
+    name: "Hantel-Workout",
+    exercises: [exercises[0], exercises[4]],
+  },
+  {
+    id: 6,
+    name: "Full-Workout",
+    exercises: [
+      exercises[0],
+      exercises[1],
+      exercises[2],
+      exercises[3],
+      exercises[4],
+    ],
+  },
+  {
+    id: 7,
+    name: "Bizeps",
+    exercises: [exercises[2], exercises[3]],
+  },
+  {
+    id: 8,
+    name: "Beine",
+    exercises: [exercises[0], exercises[4]],
+  },
+];
+
+export const apiClient = {
+  get: async <T>(url: string): Promise<T> => {
+    if (url === "/users") {
+      return users;
+    } else if (url === "/templates") {
+      return templates;
+    } else if (url === "/exercises") {
+      return exercises;
+    } else {
+      return users;
+    }
+
+    // const res = await fetch(`${BASE_URL}${url}`);
+    // if (!res.ok) throw new Error("API Error");
+    // return res.json();
+  },
+
+  post: async (url: string, body: any) => {
+    const res = await fetch(`${BASE_URL}${url}`, {
+      method: "POST",
+      headers: { "Content-Type": "aaplication/json" },
+      body: JSON.stringify(body),
+    });
+    return res.json();
+  },
+};

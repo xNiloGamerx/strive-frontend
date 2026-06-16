@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ClipboardClockIcon,
-  HouseIcon,
+  BicepsFlexedIcon,
+  DumbbellIcon,
+  NotebookTextIcon,
   PanelRightCloseIcon,
   PanelRightOpenIcon,
   TrophyIcon,
@@ -32,20 +33,25 @@ export default function Sidebar({ username, weightClass }: SidebarProps) {
   const pathname = usePathname();
 
   const routes: Routes = {
-    overview: {
-      label: "Overview",
-      route: "/dashboard/overview",
-      icon: <HouseIcon className="w-5 h-5" />,
+    workout: {
+      label: "Workout",
+      route: "/dashboard/workout",
+      icon: <BicepsFlexedIcon className="w-5 h-5" />,
+    },
+    templates: {
+      label: "Vorlagen",
+      route: "/dashboard/templates",
+      icon: <NotebookTextIcon className="w-5 h-5" />,
+    },
+    exercises: {
+      label: "Übungen",
+      route: "/dashboard/exercises",
+      icon: <DumbbellIcon className="w-5 h-5" />,
     },
     leaderboard: {
       label: "Leaderboard",
       route: "/dashboard/leaderboard",
       icon: <TrophyIcon className="w-5 h-5" />,
-    },
-    history: {
-      label: "Logs",
-      route: "/dashboard/logs",
-      icon: <ClipboardClockIcon className="w-5 h-5" />,
     },
     profile: {
       label: "Profile",
@@ -72,7 +78,7 @@ export default function Sidebar({ username, weightClass }: SidebarProps) {
       <div
         className={`flex items-center justify-center ${!collapsed && "mx-4"} pb-4 border-b border-gray-300`}
       >
-        <Link className="cursor-pointer" href={routes.overview.route}>
+        <Link className="cursor-pointer" href={routes.workout.route}>
           <Image
             src={
               collapsed

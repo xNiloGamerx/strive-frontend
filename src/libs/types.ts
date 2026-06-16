@@ -8,6 +8,18 @@ export type User = {
   rank?: Rank;
 };
 
+export type Exercise = {
+  id: number;
+  name: string;
+  category: string;
+};
+
+export type Template = {
+  id: number;
+  name: string;
+  exercises: Exercise[];
+};
+
 export type Rank = {
   rank: number;
   exercise: string;
