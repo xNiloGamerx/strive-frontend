@@ -2,7 +2,9 @@
 
 import { useTemplates } from "@/features/templates/hooks";
 import { useWorkouts } from "@/features/workouts/hook";
-import { ArrowRightIcon, PlayIcon } from "lucide-react";
+import { getTimeDifference } from "@/libs/utils";
+import { time } from "console";
+import { ArrowRightIcon, ClockIcon, PlayIcon, WeightIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function WorkoutPage() {
@@ -26,7 +28,7 @@ export default function WorkoutPage() {
           {data?.map((template) => (
             <div
               key={template.id}
-              className="relative flex items-center justify-between flex-1 basis-60 max-w-60 p-2 text-ellipsis bg-white dark:bg-black rounded-md"
+              className="relative flex items-center justify-between flex-1 basis-60 max-w-60 px-4 py-2 text-ellipsis bg-white dark:bg-black rounded-md"
             >
               <p>{template.name}</p>
               <button
@@ -54,39 +56,110 @@ export default function WorkoutPage() {
           </div>
         </Link>
         <div className="flex gap-2 flex-wrap">
-          {workoutsData.data?.map((workout) => (
-            <div
-              key={workout.id}
-              className="relative flex flex-col gap-2 flex-1 p-2 text-ellipsis bg-white dark:bg-black rounded-md"
-            >
-              <div className="flex flex-col">
-                <h2 className="font-bold text-lg">{workout.template.name}</h2>
-                <p className="text-gray-400">
-                  {new Intl.DateTimeFormat("de-DE", {
-                    weekday: "long",
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })
-                    .format(new Date(workout.startTime))
-                    .replace(/,([^,]*)$/, " um $1")}
-                </p>
-              </div>
-              <div className="flex flex-col">
-                <h3 className="font-bold">Sets</h3>
-                {workout.sets.map((set) => (
-                  <div key={set.id} className="flex gap-1">
-                    <p className="text-gray-400">{set.reps}</p>
-                    <p className="text-gray-400">x</p>
-                    <p className="text-gray-400">{set.exersice.name}</p>
-                    <p className="ml-2 text-gray-400">{set.weight}</p>
+          {workoutsData.data?.map((workout) => {
+            const startDate = new Date(workout.startTime);
+            const endDate = new Date(workout.endTime);
+
+            const timeDifference = getTimeDifference(startDate, endDate);
+
+            let fullWeight = 0;
+            workout.exercises.forEach((exercise) => {
+              exercise.sets.forEach((set) => {
+                fullWeight += Number(set.weight);
+              });
+            });
+
+            return (
+              <div
+                key={workout.id}
+                className="relative flex flex-col justify-between gap-4 flex-1 px-4 py-2 text-ellipsis bg-white dark:bg-black rounded-md"
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="flex flex-col">
+                    <h2 className="font-bold text-lg">
+                      {workout.template.name}
+                    </h2>
+                    <p className="text-gray-400">
+                      {new Intl.DateTimeFormat("de-DE", {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                        .format(new Date(workout.startTime))
+                        .replace(/,([^,]*)$/, " um $1")}
+                    </p>
                   </div>
-                ))}
+                  <div className="flex gap-8">
+                    <div className="flex flex-col">
+                      <h3 className="font-semibold">Sets</h3>
+                      {workout.exercises.map((exercise) => (
+                        <div
+                          key={exercise.exerciseId}
+                          className="flex gap-1 text-gray-600"
+                        >
+                          <p>{exercise.sets.length}</p>
+                          <p>x</p>
+                          <p>
+                            {
+                              workout.template.exercises.filter(
+                                (exerciseInner) =>
+                                  exerciseInner.id === exercise.exerciseId,
+                              )[0].name
+                            }
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex flex-col">
+                      <h3 className="font-semibold">Bestes Set</h3>
+                      {workout.exercises.map((exercise) => {
+                        let bestSet = exercise.sets[0];
+                        exercise.sets.forEach((set) => {
+                          if (set.weight > bestSet.weight) {
+                            bestSet = set;
+                          }
+                        });
+
+                        return (
+                          <div
+                            key={bestSet.id}
+                            className="flex gap-1 text-gray-600"
+                          >
+                            <p>{bestSet.weight}</p>
+                            <p>x</p>
+                            <p>{bestSet.reps}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <ClockIcon width={18} height={18} />
+                    <p>
+                      {timeDifference.hours > 0 && `${timeDifference.hours}h`}
+                    </p>
+                    <p>
+                      {timeDifference.minutes > 0 &&
+                        `${timeDifference.minutes}m`}
+                    </p>
+                    <p>
+                      {timeDifference.seconds > 0 &&
+                        `${timeDifference.seconds}s`}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <WeightIcon width={18} height={18} />
+                    <p>{fullWeight}kg</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

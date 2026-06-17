@@ -114,50 +114,90 @@ const templates = [
 
 const workouts = [
   {
-    id: 1,
+    id: 0,
     user: users[0],
     template: templates[2],
     startTime: "2025-06-17 07:00:00",
     endTime: "2025-06-17 08:00:00",
-    sets: [
+    exercises: [
       {
-        id: 1,
-        exersice: exercises[2],
-        weight: "100kg",
-        reps: 5,
+        exerciseId: templates[2].exercises[0].id,
+        sets: [
+          {
+            id: 0,
+            weight: 100,
+            reps: 5,
+          },
+          {
+            id: 1,
+            weight: 200,
+            reps: 10,
+          },
+        ],
       },
       {
-        id: 2,
-        exersice: exercises[4],
-        weight: "80kg",
-        reps: 4,
+        exerciseId: templates[2].exercises[1].id,
+        sets: [
+          {
+            id: 0,
+            weight: 50,
+            reps: 5,
+          },
+        ],
+      },
+      {
+        exerciseId: templates[2].exercises[2].id,
+        sets: [
+          {
+            id: 0,
+            weight: 35,
+            reps: 5,
+          },
+          {
+            id: 1,
+            weight: 35,
+            reps: 5,
+          },
+          {
+            id: 2,
+            weight: 50,
+            reps: 5,
+          },
+        ],
       },
     ],
   },
   {
-    id: 2,
+    id: 1,
     user: users[0],
     template: templates[4],
-    startTime: "2025-06-18 08:00:00",
-    endTime: "2025-06-18 09:00:00",
-    sets: [
+    startTime: "2025-06-18 07:00:00",
+    endTime: "2025-06-18 08:00:00",
+    exercises: [
       {
-        id: 1,
-        exersice: exercises[2],
-        weight: "100kg",
-        reps: 5,
+        exerciseId: templates[4].exercises[0].id,
+        sets: [
+          {
+            id: 0,
+            weight: 10,
+            reps: 5,
+          },
+          {
+            id: 1,
+            weight: 20,
+            reps: 10,
+          },
+        ],
       },
       {
-        id: 2,
-        exersice: exercises[3],
-        weight: "80kg",
-        reps: 4,
-      },
-      {
-        id: 3,
-        exersice: exercises[1],
-        weight: "30kg",
-        reps: 6,
+        exerciseId: templates[4].exercises[1].id,
+        sets: [
+          {
+            id: 0,
+            weight: 35,
+            reps: 5,
+          },
+        ],
       },
     ],
   },
