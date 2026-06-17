@@ -63,35 +63,41 @@ const exercises = [
   },
 ];
 
-const templates = [
+const templates: Template[] = [
   {
     id: 1,
     name: "Nachmittags-Workout",
+    description: "Workout für den Nachmittag",
     exercises: [exercises[1], exercises[3], exercises[4]],
   },
   {
     id: 2,
     name: "Morgens-Workout",
+    description: "Workout für den Morgen",
     exercises: [exercises[2], exercises[4]],
   },
   {
     id: 3,
     name: "Home-Workout",
+    description: "Workout für zu Hause",
     exercises: [exercises[1], exercises[3], exercises[4]],
   },
   {
     id: 4,
     name: "Arbeits-Workout",
+    description: "Workout für nach der Arbeit",
     exercises: [exercises[0], exercises[3], exercises[4]],
   },
   {
     id: 5,
     name: "Hantel-Workout",
+    description: "Workout nur mit Hanteln",
     exercises: [exercises[0], exercises[4]],
   },
   {
     id: 6,
     name: "Full-Workout",
+    description: "Workout mit allen Übungen",
     exercises: [
       exercises[0],
       exercises[1],
@@ -103,11 +109,13 @@ const templates = [
   {
     id: 7,
     name: "Bizeps",
+    description: "Workout nur für Bizeps",
     exercises: [exercises[2], exercises[3]],
   },
   {
     id: 8,
     name: "Beine",
+    description: "Workout nur für Beine",
     exercises: [exercises[0], exercises[4]],
   },
 ];
@@ -121,7 +129,7 @@ const workouts = [
     endTime: "2025-06-17 08:00:00",
     exercises: [
       {
-        exerciseId: templates[2].exercises[0].id,
+        exercise: templates[2].exercises[0],
         sets: [
           {
             id: 0,
@@ -136,7 +144,7 @@ const workouts = [
         ],
       },
       {
-        exerciseId: templates[2].exercises[1].id,
+        exercise: templates[2].exercises[1],
         sets: [
           {
             id: 0,
@@ -146,7 +154,7 @@ const workouts = [
         ],
       },
       {
-        exerciseId: templates[2].exercises[2].id,
+        exercise: templates[2].exercises[2],
         sets: [
           {
             id: 0,
@@ -175,7 +183,7 @@ const workouts = [
     endTime: "2025-06-18 08:00:00",
     exercises: [
       {
-        exerciseId: templates[4].exercises[0].id,
+        exercise: templates[4].exercises[0],
         sets: [
           {
             id: 0,
@@ -190,7 +198,7 @@ const workouts = [
         ],
       },
       {
-        exerciseId: templates[4].exercises[1].id,
+        exercise: templates[4].exercises[1],
         sets: [
           {
             id: 0,

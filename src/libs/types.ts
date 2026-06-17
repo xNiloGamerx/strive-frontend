@@ -17,6 +17,7 @@ export type Exercise = {
 export type Template = {
   id: number;
   name: string;
+  description: string;
   exercises: Exercise[];
 };
 
@@ -27,7 +28,7 @@ export type Set = {
 };
 
 type WorkoutExercise = {
-  exerciseId: number;
+  exercise: Exercise;
   sets: Set[];
 };
 

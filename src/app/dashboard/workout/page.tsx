@@ -96,18 +96,13 @@ export default function WorkoutPage() {
                       <h3 className="font-semibold">Sets</h3>
                       {workout.exercises.map((exercise) => (
                         <div
-                          key={exercise.exerciseId}
+                          key={exercise.exercise.id}
                           className="flex gap-1 text-gray-600"
                         >
                           <p>{exercise.sets.length}</p>
                           <p>x</p>
-                          <p>
-                            {
-                              workout.template.exercises.filter(
-                                (exerciseInner) =>
-                                  exerciseInner.id === exercise.exerciseId,
-                              )[0].name
-                            }
+                          <p className="text-nowrap text-ellipsis">
+                            {exercise.exercise.name}
                           </p>
                         </div>
                       ))}
