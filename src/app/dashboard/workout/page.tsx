@@ -3,7 +3,6 @@
 import { useTemplates } from "@/features/templates/hooks";
 import { useWorkouts } from "@/features/workouts/hook";
 import { getTimeDifference } from "@/libs/utils";
-import { time } from "console";
 import { ArrowRightIcon, ClockIcon, PlayIcon, WeightIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -128,7 +127,7 @@ export default function WorkoutPage() {
                             key={bestSet.id}
                             className="flex gap-1 text-gray-600"
                           >
-                            <p>{bestSet.weight}</p>
+                            <p>{bestSet.weight}kg</p>
                             <p>x</p>
                             <p>{bestSet.reps}</p>
                           </div>
