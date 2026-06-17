@@ -20,6 +20,22 @@ export type Template = {
   exercises: Exercise[];
 };
 
+export type Set = {
+  id: number;
+  exersice: Exercise;
+  weight: string;
+  reps: number;
+};
+
+export type Workout = {
+  id: number;
+  user: User;
+  template: Template;
+  startTime: string;
+  endTime: string;
+  sets: Set[];
+};
+
 export type Rank = {
   rank: number;
   exercise: string;

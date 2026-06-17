@@ -2,12 +2,6 @@ import { Exercise, Template, User } from "@/libs/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-type exampleData = {
-  users: User[];
-  exercises: Exercise[];
-  templates: Template[];
-};
-
 const users = [
   {
     id: "1",
@@ -118,6 +112,57 @@ const templates = [
   },
 ];
 
+const workouts = [
+  {
+    id: 1,
+    user: users[0],
+    template: templates[2],
+    startTime: "2025-06-17 07:00:00",
+    endTime: "2025-06-17 08:00:00",
+    sets: [
+      {
+        id: 1,
+        exersice: exercises[2],
+        weight: "100kg",
+        reps: 5,
+      },
+      {
+        id: 2,
+        exersice: exercises[4],
+        weight: "80kg",
+        reps: 4,
+      },
+    ],
+  },
+  {
+    id: 2,
+    user: users[0],
+    template: templates[4],
+    startTime: "2025-06-18 08:00:00",
+    endTime: "2025-06-18 09:00:00",
+    sets: [
+      {
+        id: 1,
+        exersice: exercises[2],
+        weight: "100kg",
+        reps: 5,
+      },
+      {
+        id: 2,
+        exersice: exercises[3],
+        weight: "80kg",
+        reps: 4,
+      },
+      {
+        id: 3,
+        exersice: exercises[1],
+        weight: "30kg",
+        reps: 6,
+      },
+    ],
+  },
+];
+
 export const apiClient = {
   get: async <T>(url: string): Promise<T> => {
     if (url === "/users") {
@@ -126,6 +171,8 @@ export const apiClient = {
       return templates;
     } else if (url === "/exercises") {
       return exercises;
+    } else if (url === "/workouts") {
+      return workouts;
     } else {
       return users;
     }
