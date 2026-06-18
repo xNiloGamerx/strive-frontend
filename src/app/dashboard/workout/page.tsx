@@ -19,8 +19,10 @@ export default function WorkoutPage() {
             title="Gehe zu Templates"
             className="flex items-center gap-2 group cursor-pointer"
           >
-            <h1 className="font-bold text-2xl">Vorlagen</h1>
-            <ArrowRightIcon className="transition-[translate] group-hover:translate-x-2" />
+            <h1 className="font-bold text-2xl text-black dark:text-white">
+              Vorlagen
+            </h1>
+            <ArrowRightIcon className="transition-[translate] group-hover:translate-x-2 text-black dark:text-white" />
           </div>
         </Link>
         <div className="flex gap-2 flex-wrap">
@@ -29,7 +31,7 @@ export default function WorkoutPage() {
               key={template.id}
               className="relative flex items-center justify-between flex-1 basis-60 max-w-60 px-4 py-2 text-ellipsis bg-white dark:bg-black rounded-md"
             >
-              <p>{template.name}</p>
+              <p className="text-black dark:text-white">{template.name}</p>
               <button
                 type="button"
                 className="p-2 rounded-full bg-black dark:bg-white cursor-pointer hover:opacity-85 active:opacity-75"
@@ -50,8 +52,10 @@ export default function WorkoutPage() {
             title="Gehe zur Workout Historie"
             className="flex items-center gap-2 group cursor-pointer"
           >
-            <h1 className="font-bold text-2xl">Letzte Workouts</h1>
-            <ArrowRightIcon className="transition-[translate] group-hover:translate-x-2" />
+            <h1 className="font-bold text-2xl text-black dark:text-white">
+              Letzte Workouts
+            </h1>
+            <ArrowRightIcon className="transition-[translate] group-hover:translate-x-2 text-black dark:text-white" />
           </div>
         </Link>
         <div className="flex gap-2 flex-wrap">
@@ -75,7 +79,7 @@ export default function WorkoutPage() {
               >
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-col">
-                    <h2 className="font-bold text-lg">
+                    <h2 className="font-bold text-lg text-black dark:text-white">
                       {workout.template.name}
                     </h2>
                     <p className="text-gray-400">
@@ -93,7 +97,9 @@ export default function WorkoutPage() {
                   </div>
                   <div className="flex gap-8">
                     <div className="flex flex-col">
-                      <h3 className="font-semibold">Sets</h3>
+                      <h3 className="font-semibold text-black dark:text-white">
+                        Sets
+                      </h3>
                       {workout.exercises.map((exercise) => (
                         <div
                           key={exercise.exercise.id}
@@ -108,7 +114,9 @@ export default function WorkoutPage() {
                       ))}
                     </div>
                     <div className="flex flex-col">
-                      <h3 className="font-semibold">Bestes Set</h3>
+                      <h3 className="font-semibold text-black dark:text-white">
+                        Bestes Set
+                      </h3>
                       {workout.exercises.map((exercise) => {
                         let bestSet = exercise.sets[0];
                         exercise.sets.forEach((set) => {
@@ -133,22 +141,30 @@ export default function WorkoutPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
-                    <ClockIcon width={18} height={18} />
-                    <p>
+                    <ClockIcon
+                      width={18}
+                      height={18}
+                      className="text-black dark:text-white"
+                    />
+                    <p className="text-black dark:text-white">
                       {timeDifference.hours > 0 && `${timeDifference.hours}h`}
                     </p>
-                    <p>
+                    <p className="text-black dark:text-white">
                       {timeDifference.minutes > 0 &&
                         `${timeDifference.minutes}m`}
                     </p>
-                    <p>
+                    <p className="text-black dark:text-white">
                       {timeDifference.seconds > 0 &&
                         `${timeDifference.seconds}s`}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <WeightIcon width={18} height={18} />
-                    <p>{fullWeight}kg</p>
+                    <WeightIcon
+                      width={18}
+                      height={18}
+                      className="text-black dark:text-white"
+                    />
+                    <p className="text-black dark:text-white">{fullWeight}kg</p>
                   </div>
                 </div>
               </div>
