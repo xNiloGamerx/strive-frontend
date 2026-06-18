@@ -31,7 +31,11 @@ export default function WorkoutPage() {
               key={template.id}
               className="relative flex items-center justify-between flex-1 basis-60 max-w-60 px-4 py-2 text-ellipsis bg-white dark:bg-black rounded-md"
             >
-              <p className="text-black dark:text-white">{template.name}</p>
+              <Link href={`/dashboard/templates/${template.id}`}>
+                <p className="text-black dark:text-white hover:underline">
+                  {template.name}
+                </p>
+              </Link>
               <button
                 type="button"
                 className="p-2 rounded-full bg-black dark:bg-white cursor-pointer hover:opacity-85 active:opacity-75"
